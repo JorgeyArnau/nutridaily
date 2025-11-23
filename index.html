@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>NutriDaily AI · Tu dieta que se adapta a tu día</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Fuentes modernas (no son las del template original) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-main: #00e676;
+      --green-dark: #00c465;
+      --bg-main: #f5f5f5;
+      --bg-card: #ffffff;
+      --text-main: #111111;
+      --text-soft: #777777;
+      --border-soft: #e1e1e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      background: var(--green-main);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px; /* menú más grande */
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .logo-main {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.9;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #ffffff;
+      transition: width 0.25s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      height: 420px;
+      background: #222 url("https://images.pexels.com/photos/791769/pexels-photo-791769.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.65));
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-text {
+      text-align: center;
+      color: #ffffff;
+      max-width: 640px;
+      padding: 0 24px;
+      animation: heroFade 0.8s ease-out;
+    }
+
+    .hero-kicker {
+      font-family: "Montserrat", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-decoration-color: var(--green-main);
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #f1f1f1;
+      margin-bottom: 20px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 2px solid var(--green-main);
+      background: transparent;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-cta:hover {
+      background: var(--green-main);
+      color: #000000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+    }
+
+    @keyframes heroFade {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================= TIRA DE CATEGORÍAS (tipo Mujer/Hombre/Ofertas) ================= */
+
+    .strip-categories {
+      max-width: 1200px;
+      margin: 26px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding: 0 24px 10px;
+    }
+
+    .strip-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      min-height: 180px;
+      cursor: pointer;
+    }
+
+    .strip-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .strip-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+
+    .strip-label {
+      position: absolute;
+      bottom: 18px;
+      left: 22px;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      font-size: 15px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .strip-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.92);
+    }
+
+    /* ================= BLOQUE HOW IT WORKS (tipo “Las marcas”) ================= */
+
+    .section-how {
+      margin-top: 26px;
+    }
+
+    .how-bg {
+      position: relative;
+      height: 320px;
+      background: #222 url("https://images.pexels.com/photos/7676408/pexels-photo-7676408.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .how-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .how-content {
+      position: relative;
+      text-align: center;
+      color: #ffffff;
+      max-width: 620px;
+      padding: 0 24px;
+    }
+
+    .how-title-small {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: var(--green-main);
+    }
+
+    .how-title-main {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .how-text {
+      font-size: 14px;
+      color: #f3f3f3;
+    }
+
+    .how-strip-bottom {
+      background: var(--green-main);
+      padding: 18px 24px;
+    }
+
+    .how-strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 24px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #000000;
+    }
+
+    .how-pill {
+      background: #ffffff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+    }
+
+    /* ================= APP NUTRIDAILY ================= */
+
+    .app-section {
+      max-width: 1100px;
+      margin: 40px auto 50px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.1fr);
+      gap: 30px;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      border-radius: 6px;
+      padding: 24px 24px 22px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-soft);
+    }
+
+    .app-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .app-subtitle {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      border-radius: 4px;
+      border: 1px solid var(--border-soft);
+      padding: 8px 10px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fdfdfd;
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .app-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--green-main);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-dark);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--text-soft);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--green-main);
+      color: var(--green-dark);
+    }
+
+    .ad-slot {
+      margin-top: 18px;
+      border-radius: 4px;
+      border: 1px dashed #c5c5c5;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #999999;
+      text-align: center;
+    }
+
+    /* Columna derecha: resultado y historial */
+
+    .result-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .result-meta {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .result-box {
+      border-radius: 4px;
+      border: 1px solid var(--border-soft);
+      padding: 12px 14px;
+      font-size: 14px;
+      background: #fbfbfb;
+      max-height: 260px;
+      overflow-y: auto;
+      margin-bottom: 14px;
+    }
+
+    .result-box h4 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 10px 0 4px;
+    }
+
+    .result-box ul {
+      margin-left: 18px;
+      margin-bottom: 6px;
+    }
+
+    .history-list {
+      margin-top: 10px;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 8px;
+      font-size: 13px;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .history-item button {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--green-main);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .history-item button:hover {
+      background: var(--green-main);
+      color: #000;
+    }
+
+    /* ================= FOOTER SENCILLO ================= */
+
+    footer {
+      background: #000;
+      color: #f1f1f1;
+      padding: 22px 24px;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 960px) {
+      .strip-categories {
+        grid-template-columns: 1fr;
+      }
+
+      .app-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav ul {
+        gap: 16px;
+        font-size: 11px;
+      }
+
+      .hero-bg {
+        height: 360px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-bg {
+        height: 320px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-main">NutriDaily AI</div>
+        <div class="logo-sub">Tu dieta, según tu día</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#app">Generar dieta</a></li>
+          <li><a href="#app">Mi historial</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-kicker">Planificación inteligente</div>
+          <h1 class="hero-title">¿Estás listo para <span>ajustar tu dieta</span> a tu entrenamiento?</h1>
+          <p class="hero-subtitle">
+            NutriDaily AI tiene en cuenta tu objetivo, tu actividad diaria y tus preferencias
+            para crear un plan que se actualiza cada día en función de lo que realmente haces.
+          </p>
+          <button class="hero-cta" onclick="scrollToApp()">Crear dieta de hoy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIRA DE CATEGORÍAS -->
+  <section class="strip-categories">
+    <div class="strip-card" onclick="scrollToApp()">
+      <img src="https://images.pexels.com/photos/6456296/pexels-photo-6456296.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Perder grasa" />
+      <div class="strip-label">Perder grasa</div>
+    </div>
+    <div class="strip-card" onclick="scrollToApp()">
+      <img src="https://images.pexels.com/photos/4753998/pexels-photo-4753998.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Rendimiento" />
+      <div class="strip-label">Rendimiento</div>
+    </div>
+    <div class="strip-card" onclick="scrollToApp()">
+      <img src="https://images.pexels.com/photos/6456282/pexels-photo-6456282.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Ganar músculo" />
+      <div class="strip-label">Ganar músculo</div>
+    </div>
+  </section>
+
+  <!-- BLOQUE CÓMO FUNCIONA (tipo “LAS MARCAS”) -->
+  <section class="section-how" id="como-funciona">
+    <div class="how-bg">
+      <div class="how-overlay"></div>
+      <div class="how-content">
+        <div class="how-title-small">Cómo funciona</div>
+        <div class="how-title-main">NutriDaily se adapta a tu día</div>
+        <p class="how-text">
+          Introduces tus datos básicos, tu objetivo y el tipo de actividad que realizas.
+          Cada día puedes registrar si has corrido más, entrenado fuerza o descansado.
+          Con esa información ajustamos las calorías y los macronutrientes para que tu plan
+          sea flexible pero coherente con tu objetivo.
+        </p>
+      </div>
+    </div>
+    <div class="how-strip-bottom">
+      <div class="how-strip-inner">
+        <span>Registra tu día</span>
+        <span class="how-pill">Ajustamos calorías y macros</span>
+        <span>Guarda tu dieta y revisa el historial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP NUTRIDAILY -->
+  <section class="app-section" id="app">
+    <!-- Columna izquierda: formulario -->
+    <div class="app-card">
+      <h2 class="app-title">Genera tu dieta de hoy</h2>
+      <p class="app-subtitle">
+        Rellena los datos básicos. NutriDaily estimará tus calorías y macros, generará una propuesta
+        de comidas y la guardará para que puedas revisarla más tarde.
+      </p>
+
+      <form id="dietForm">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input id="name" type="text" placeholder="Jorge" />
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <select id="sexo">
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input id="edad" type="number" min="12" max="90" />
+        </div>
+        <div class="form-group">
+          <label for="peso">Peso (kg)</label>
+          <input id="peso" type="number" step="0.1" />
+        </div>
+
+        <div class="form-group">
+          <label for="altura">Altura (cm)</label>
+          <input id="altura" type="number" />
+        </div>
+        <div class="form-group">
+          <label for="objetivo">Objetivo</label>
+          <select id="objetivo">
+            <option value="deficit">Perder grasa</option>
+            <option value="mantenimiento">Mantener</option>
+            <option value="superavit">Ganar músculo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="actividad">Actividad diaria</label>
+          <select id="actividad">
+            <option value="sedentario">Sedentario</option>
+            <option value="ligero">Ligera (1–3 entrenos/sem)</option>
+            <option value="moderado">Moderada (3–5 entrenos/sem)</option>
+            <option value="alta">Alta (6+ entrenos/sem)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="entrenamiento">Hoy has entrenado...</label>
+          <select id="entrenamiento">
+            <option value="descanso">Descanso</option>
+            <option value="cardio_suave">Cardio suave (≤40’)</option>
+            <option value="cardio_duro">Cardio intenso o tirada larga</option>
+            <option value="fuerza">Fuerza</option>
+            <option value="mixto">Fuerza + cardio</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="comidas">Comidas al día</label>
+          <select id="comidas">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="form-group full">
+          <label for="preferencias">Preferencias / restricciones</label>
+          <textarea id="preferencias" placeholder="Ej.: sin lácteos, más proteína en la cena, etc."></textarea>
+        </div>
+
+        <div class="app-actions">
+          <button type="submit" class="btn-primary">Generar dieta de hoy</button>
+          <button type="button" class="btn-secondary" onclick="loadTodayDiet()">Ver dieta de hoy</button>
+          <button type="button" class="btn-secondary" onclick="clearForm()">Limpiar formulario</button>
+        </div>
+      </form>
+
+      <!-- Espacio reservado para AdSense -->
+      <div class="ad-slot">
+        Espacio para anuncio (Google AdSense).  
+        Aquí puedes insertar el script oficial cuando tengas tu ID de editor.
+      </div>
+    </div>
+
+    <!-- Columna derecha: resultado + historial -->
+    <div class="app-card">
+      <h3 class="result-title">Tu plan de hoy</h3>
+      <div id="resultMeta" class="result-meta">
+        Completa el formulario y genera tu dieta para ver el plan aquí.
+      </div>
+      <div id="resultBox" class="result-box">
+        <!-- Aquí se pinta el plan -->
+      </div>
+
+      <h4 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:6px;">
+        Historial reciente
+      </h4>
+      <div id="historyList" class="history-list">
+        Aún no has guardado ninguna dieta.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 2025 NutriDaily AI. Diseñado para verse bien en ordenador y móvil.</div>
+      <div>Desarrollado por Jorge &amp; Arnau · CAFyD</div>
+    </div>
+  </footer>
+
+  <script>
+    function scrollToApp() {
+      document.getElementById("app").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function clearForm() {
+      document.getElementById("dietForm").reset();
+    }
+
+    function getTodayKey() {
+      const d = new Date();
+      return d.toISOString().slice(0, 10); // AAAA-MM-DD
+    }
+
+    function loadStoredDiets() {
+      try {
+        const raw = localStorage.getItem("nutridaily_diets");
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        console.error("Error leyendo localStorage", e);
+        return [];
+      }
+    }
+
+    function saveStoredDiets(list) {
+      localStorage.setItem("nutridaily_diets", JSON.stringify(list));
+    }
+
+    function calculateCalories({ sexo, edad, peso, altura, actividad, objetivo, entrenamiento }) {
+      // Fórmula Mifflin-St Jeor aproximada
+      const base =
+        sexo === "hombre"
+          ? 10 * peso + 6.25 * altura - 5 * edad + 5
+          : 10 * peso + 6.25 * altura - 5 * edad - 161;
+
+      let factorActividad = 1.2;
+      if (actividad === "ligero") factorActividad = 1.375;
+      else if (actividad === "moderado") factorActividad = 1.55;
+      else if (actividad === "alta") factorActividad = 1.725;
+
+      let total = base * factorActividad;
+
+      // Ajuste por tipo de día
+      if (entrenamiento === "cardio_duro" || entrenamiento === "mixto") total += 200;
+      else if (entrenamiento === "descanso") total -= 150;
+
+      // Ajuste por objetivo
+      if (objetivo === "deficit") total -= 300;
+      else if (objetivo === "superavit") total += 250;
+
+      return Math.max(1300, Math.round(total));
+    }
+
+    function calculateMacros(calorias, peso, objetivo) {
+      // Proteína aproximada
+      let gProte = objetivo === "superavit" ? peso * 2 : peso * 2.2;
+      gProte = Math.round(gProte);
+
+      const kcalProte = gProte * 4;
+
+      // Grasas ~25% kcal
+      const kcalGrasa = calorias * 0.25;
+      const gGrasa = Math.round(kcalGrasa / 9);
+
+      const kcalCarb = calorias - kcalProte - kcalGrasa;
+      const gCarb = Math.max(0, Math.round(kcalCarb / 4));
+
+      return { gProte, gGrasa, gCarb };
+    }
+
+    function buildDiet({ calorias, macros, comidas, preferencias }) {
+      const baseMeals = ["Desayuno", "Comida", "Merienda", "Cena", "Snack extra"];
+      const selectedMeals = baseMeals.slice(0, comidas);
+
+      const textPref = preferencias ? "Ten en cuenta: " + preferencias : null;
+
+      const meals = selectedMeals.map((name, idx) => {
+        let items;
+        switch (name) {
+          case "Desayuno":
+            items = [
+              "Avena con leche o bebida vegetal",
+              "1 pieza de fruta",
+              "Fuente de proteína: yogur proteico o claras/huevo"
+            ];
+            break;
+          case "Comida":
+            items = [
+              "Plato principal con proteína magra (pollo, pavo, legumbre, tofu)",
+              "Ración de hidrato (arroz, pasta, patata, pan)",
+              "Verdura abundante (ensalada o verdura cocinada)"
+            ];
+            break;
+          case "Merienda":
+            items = ["Fruta", "Frutos secos o crema de cacahuete", "Opción proteica: queso fresco batido, lonchas de pavo, etc."];
+            break;
+          case "Cena":
+            items = [
+              "Proteína (pescado, huevo, carne magra o legumbre)",
+              "Verduras variadas",
+              "Cantidad moderada de hidratos según sensación de hambre"
+            ];
+            break;
+          default:
+            items = ["Snack libre pero coherente (fruta, yogur, puñado de frutos secos, barrita decente…)"];
+        }
+
+        return { name, items };
+      });
+
+      return { calorias, macros, meals, textPref };
+    }
+
+    function renderDiet(dateKey, name, diet) {
+      const resultMeta = document.getElementById("resultMeta");
+      const resultBox = document.getElementById("resultBox");
+
+      resultMeta.textContent = `Plan guardado para ${name || "tu usuario"} · Día ${dateKey}`;
+      const { calorias, macros, meals, textPref } = diet;
+
+      let html = "";
+      html += `<p><strong>Calorías estimadas:</strong> ${calorias} kcal</p>`;
+      html += `<p><strong>Macros aprox.:</strong> ${macros.gProte} g proteína · ${macros.gCarb} g hidratos · ${macros.gGrasa} g grasas</p>`;
+
+      if (textPref) {
+        html += `<p style="margin-top:6px; font-size:13px;"><strong>Preferencias:</strong> ${textPref}</p>`;
+      }
+
+      meals.forEach((meal) => {
+        html += `<h4>${meal.name}</h4><ul>`;
+        meal.items.forEach((item) => {
+          html += `<li>${item}</li>`;
+        });
+        html += `</ul>`;
+      });
+
+      resultBox.innerHTML = html;
+    }
+
+    function renderHistory(list) {
+      const historyList = document.getElementById("historyList");
+      if (!list.length) {
+        historyList.textContent = "Aún no has guardado ninguna dieta.";
+        return;
+      }
+
+      const sorted = [...list].sort((a, b) => (a.date < b.date ? 1 : -1));
+      historyList.innerHTML = "";
+      sorted.slice(0, 10).forEach((entry) => {
+        const div = document.createElement("div");
+        div.className = "history-item";
+        div.innerHTML = `
+          <span>${entry.date} · ${entry.name || "Sin nombre"} · ${entry.diet.calorias} kcal</span>
+          <button data-date="${entry.date}">Ver</button>
+        `;
+        historyList.appendChild(div);
+      });
+
+      historyList.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const date = btn.getAttribute("data-date");
+          const entry = list.find((e) => e.date === date);
+          if (entry) renderDiet(entry.date, entry.name, entry.diet);
+        });
+      });
+    }
+
+    document.getElementById("dietForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const sexo = document.getElementById("sexo").value;
+      const edad = Number(document.getElementById("edad").value);
+      const peso = Number(document.getElementById("peso").value);
+      const altura = Number(document.getElementById("altura").value);
+      const objetivo = document.getElementById("objetivo").value;
+      const actividad = document.getElementById("actividad").value;
+      const entrenamiento = document.getElementById("entrenamiento").value;
+      const comidas = Number(document.getElementById("comidas").value);
+      const preferencias = document.getElementById("preferencias").value.trim();
+
+      if (!edad || !peso || !altura) {
+        alert("Completa al menos edad, peso y altura para calcular la dieta.");
+        return;
+      }
+
+      const calorias = calculateCalories({ sexo, edad, peso, altura, actividad, objetivo, entrenamiento });
+      const macros = calculateMacros(calorias, peso, objetivo);
+      const diet = buildDiet({ calorias, macros, comidas, preferencias });
+
+      const dateKey = getTodayKey();
+      const list = loadStoredDiets();
+      const existingIndex = list.findIndex((d) => d.date === dateKey);
+
+      const entry = { date: dateKey, name, diet };
+
+      if (existingIndex >= 0) list[existingIndex] = entry;
+      else list.push(entry);
+
+      saveStoredDiets(list);
+      renderDiet(dateKey, name, diet);
+      renderHistory(list);
+    });
+
+    function loadTodayDiet() {
+      const dateKey = getTodayKey();
+      const list = loadStoredDiets();
+      const entry = list.find((d) => d.date === dateKey);
+      if (!entry) {
+        alert("Aún no hay ninguna dieta guardada para hoy. Genera la dieta primero.");
+        return;
+      }
+      renderDiet(entry.date, entry.name, entry.diet);
+      renderHistory(list);
+    }
+
+    // Pintar historial al cargar
+    document.addEventListener("DOMContentLoaded", () => {
+      renderHistory(loadStoredDiets());
+    });
+  </script>
+</body>
+</html>
