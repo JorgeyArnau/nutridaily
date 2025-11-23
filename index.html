@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>NutriDaily AI · Tu dieta que se adapta a tu día</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Fuentes modernas (no son las del template original) -->
+  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -58,7 +58,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 74px; /* menú más grande */
+      min-height: 74px;
     }
 
     .logo {
@@ -204,17 +204,11 @@
     }
 
     @keyframes heroFade {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ================= TIRA DE CATEGORÍAS (tipo Mujer/Hombre/Ofertas) ================= */
+    /* ================= TIRA DE CATEGORÍAS ================= */
 
     .strip-categories {
       max-width: 1200px;
@@ -266,11 +260,9 @@
       filter: brightness(0.92);
     }
 
-    /* ================= BLOQUE HOW IT WORKS (tipo “Las marcas”) ================= */
+    /* ================= BLOQUE CÓMO FUNCIONA ================= */
 
-    .section-how {
-      margin-top: 26px;
-    }
+    .section-how { margin-top: 26px; }
 
     .how-bg {
       position: relative;
@@ -361,7 +353,7 @@
       background: var(--bg-card);
       border-radius: 6px;
       padding: 24px 24px 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
       border: 1px solid var(--border-soft);
     }
 
@@ -379,10 +371,20 @@
       margin-bottom: 18px;
     }
 
+    .form-section-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 14px 0 6px;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 4px;
+    }
+
     form {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px 18px;
+      gap: 10px 18px;
       font-size: 14px;
     }
 
@@ -411,14 +413,9 @@
       background: #fdfdfd;
     }
 
-    textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
+    textarea { min-height: 70px; resize: vertical; }
 
-    .form-group.full {
-      grid-column: 1 / -1;
-    }
+    .form-group.full { grid-column: 1 / -1; }
 
     .app-actions {
       grid-column: 1 / -1;
@@ -445,9 +442,7 @@
       color: #000;
     }
 
-    .btn-primary:hover {
-      background: var(--green-dark);
-    }
+    .btn-primary:hover { background: var(--green-dark); }
 
     .btn-secondary {
       background: transparent;
@@ -470,7 +465,7 @@
       text-align: center;
     }
 
-    /* Columna derecha: resultado y historial */
+    /* Columna derecha: plan general + resultado + historial */
 
     .result-title {
       font-family: "Montserrat", sans-serif;
@@ -483,7 +478,7 @@
     .result-meta {
       font-size: 13px;
       color: var(--text-soft);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .result-box {
@@ -494,7 +489,7 @@
       background: #fbfbfb;
       max-height: 260px;
       overflow-y: auto;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .result-box h4 {
@@ -505,13 +500,19 @@
       margin: 10px 0 4px;
     }
 
+    .meal-macros {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
     .result-box ul {
       margin-left: 18px;
       margin-bottom: 6px;
     }
 
     .history-list {
-      margin-top: 10px;
+      margin-top: 6px;
       border-top: 1px solid var(--border-soft);
       padding-top: 8px;
       font-size: 13px;
@@ -539,7 +540,7 @@
       color: #000;
     }
 
-    /* ================= FOOTER SENCILLO ================= */
+    /* ================= FOOTER ================= */
 
     footer {
       background: #000;
@@ -560,13 +561,9 @@
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 960px) {
-      .strip-categories {
-        grid-template-columns: 1fr;
-      }
+      .strip-categories { grid-template-columns: 1fr; }
 
-      .app-section {
-        grid-template-columns: 1fr;
-      }
+      .app-section { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
@@ -581,27 +578,17 @@
         font-size: 11px;
       }
 
-      .hero-bg {
-        height: 360px;
-      }
+      .hero-bg { height: 360px; }
 
-      .hero-title {
-        font-size: 26px;
-      }
+      .hero-title { font-size: 26px; }
     }
 
     @media (max-width: 520px) {
-      form {
-        grid-template-columns: 1fr;
-      }
+      form { grid-template-columns: 1fr; }
 
-      .hero-bg {
-        height: 320px;
-      }
+      .hero-bg { height: 320px; }
 
-      .hero-title {
-        font-size: 22px;
-      }
+      .hero-title { font-size: 22px; }
     }
   </style>
 </head>
@@ -645,20 +632,20 @@
   <!-- TIRA DE CATEGORÍAS -->
   <section class="strip-categories">
     <div class="strip-card" onclick="scrollToApp()">
-      <img src="https://images.pexels.com/photos/6456296/pexels-photo-6456296.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Perder grasa" />
+      <img src="https://images.pexels.com/photos/1199590/pexels-photo-1199590.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Perder grasa" />
       <div class="strip-label">Perder grasa</div>
     </div>
     <div class="strip-card" onclick="scrollToApp()">
-      <img src="https://images.pexels.com/photos/4753998/pexels-photo-4753998.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Rendimiento" />
+      <img src="https://images.pexels.com/photos/1401796/pexels-photo-1401796.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Rendimiento" />
       <div class="strip-label">Rendimiento</div>
     </div>
     <div class="strip-card" onclick="scrollToApp()">
-      <img src="https://images.pexels.com/photos/6456282/pexels-photo-6456282.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Ganar músculo" />
+      <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Ganar músculo" />
       <div class="strip-label">Ganar músculo</div>
     </div>
   </section>
 
-  <!-- BLOQUE CÓMO FUNCIONA (tipo “LAS MARCAS”) -->
+  <!-- BLOQUE CÓMO FUNCIONA -->
   <section class="section-how" id="como-funciona">
     <div class="how-bg">
       <div class="how-overlay"></div>
@@ -666,18 +653,17 @@
         <div class="how-title-small">Cómo funciona</div>
         <div class="how-title-main">NutriDaily se adapta a tu día</div>
         <p class="how-text">
-          Introduces tus datos básicos, tu objetivo y el tipo de actividad que realizas.
-          Cada día puedes registrar si has corrido más, entrenado fuerza o descansado.
-          Con esa información ajustamos las calorías y los macronutrientes para que tu plan
-          sea flexible pero coherente con tu objetivo.
+          Primero generas tu plan general: calorías, macros, número de comidas y frecuencia de
+          entrenamiento recomendada. Después, cada día puedes introducir qué has hecho realmente
+          (cardio, fuerza, descanso) y ajustar la dieta sin perder de vista tu objetivo.
         </p>
       </div>
     </div>
     <div class="how-strip-bottom">
       <div class="how-strip-inner">
-        <span>Registra tu día</span>
-        <span class="how-pill">Ajustamos calorías y macros</span>
-        <span>Guarda tu dieta y revisa el historial</span>
+        <span>Plan general estable</span>
+        <span class="how-pill">Ajustes diarios según tu actividad</span>
+        <span>Historial de dietas guardadas</span>
       </div>
     </div>
   </section>
@@ -686,13 +672,16 @@
   <section class="app-section" id="app">
     <!-- Columna izquierda: formulario -->
     <div class="app-card">
-      <h2 class="app-title">Genera tu dieta de hoy</h2>
+      <h2 class="app-title">Configuración de tu plan</h2>
       <p class="app-subtitle">
-        Rellena los datos básicos. NutriDaily estimará tus calorías y macros, generará una propuesta
-        de comidas y la guardará para que puedas revisarla más tarde.
+        Rellena tus datos básicos y tu objetivo. Puedes guardar un plan general y después generar
+        la dieta de cada día ajustando el tipo de entrenamiento.
       </p>
 
       <form id="dietForm">
+        <!-- Bloque 1 -->
+        <h3 class="form-section-title">Datos básicos</h3>
+
         <div class="form-group">
           <label for="name">Nombre</label>
           <input id="name" type="text" placeholder="Jorge" />
@@ -719,6 +708,18 @@
           <input id="altura" type="number" />
         </div>
         <div class="form-group">
+          <label for="comidas">Comidas al día</label>
+          <select id="comidas">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <!-- Bloque 2 -->
+        <h3 class="form-section-title">Objetivo y actividad</h3>
+
+        <div class="form-group">
           <label for="objetivo">Objetivo</label>
           <select id="objetivo">
             <option value="deficit">Perder grasa</option>
@@ -728,7 +729,7 @@
         </div>
 
         <div class="form-group">
-          <label for="actividad">Actividad diaria</label>
+          <label for="actividad">Actividad semanal</label>
           <select id="actividad">
             <option value="sedentario">Sedentario</option>
             <option value="ligero">Ligera (1–3 entrenos/sem)</option>
@@ -748,21 +749,18 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="comidas">Comidas al día</label>
-          <select id="comidas">
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-            <option value="5">5</option>
-          </select>
+        <div class="form-group full">
+          <label for="preferencias">Preferencias / restricciones</label>
+          <textarea id="preferencias" placeholder="Ej.: sin lácteos, más proteína en la cena, días con poco tiempo para cocinar, etc."></textarea>
         </div>
 
         <div class="form-group full">
-          <label for="preferencias">Preferencias / restricciones</label>
-          <textarea id="preferencias" placeholder="Ej.: sin lácteos, más proteína en la cena, etc."></textarea>
+          <label for="notas">Notas extra para hoy</label>
+          <textarea id="notas" placeholder="Ej.: hoy carrera de 10 km, mañana descanso total, etc."></textarea>
         </div>
 
         <div class="app-actions">
+          <button type="button" class="btn-secondary" onclick="saveBasePlanFromForm()">Guardar plan general</button>
           <button type="submit" class="btn-primary">Generar dieta de hoy</button>
           <button type="button" class="btn-secondary" onclick="loadTodayDiet()">Ver dieta de hoy</button>
           <button type="button" class="btn-secondary" onclick="clearForm()">Limpiar formulario</button>
@@ -772,18 +770,23 @@
       <!-- Espacio reservado para AdSense -->
       <div class="ad-slot">
         Espacio para anuncio (Google AdSense).  
-        Aquí puedes insertar el script oficial cuando tengas tu ID de editor.
+        Aquí podrás insertar el script oficial cuando tengas tu ID de editor.
       </div>
     </div>
 
-    <!-- Columna derecha: resultado + historial -->
+    <!-- Columna derecha: plan general + resultado + historial -->
     <div class="app-card">
-      <h3 class="result-title">Tu plan de hoy</h3>
+      <h3 class="result-title">Tu plan general</h3>
+      <div id="basePlanBox" class="result-box">
+        Aún no has guardado ningún plan general.
+      </div>
+
+      <h3 class="result-title" style="margin-top:4px;">Tu plan de hoy</h3>
       <div id="resultMeta" class="result-meta">
         Completa el formulario y genera tu dieta para ver el plan aquí.
       </div>
       <div id="resultBox" class="result-box">
-        <!-- Aquí se pinta el plan -->
+        <!-- Se rellena con JS -->
       </div>
 
       <h4 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:6px;">
@@ -830,8 +833,41 @@
       localStorage.setItem("nutridaily_diets", JSON.stringify(list));
     }
 
-    function calculateCalories({ sexo, edad, peso, altura, actividad, objetivo, entrenamiento }) {
-      // Fórmula Mifflin-St Jeor aproximada
+    function loadBasePlan() {
+      try {
+        const raw = localStorage.getItem("nutridaily_base_plan");
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        console.error("Error leyendo base plan", e);
+        return null;
+      }
+    }
+
+    function saveBasePlan(plan) {
+      localStorage.setItem("nutridaily_base_plan", JSON.stringify(plan));
+    }
+
+    function mapActivityLabel(act) {
+      switch (act) {
+        case "sedentario": return "Sedentario";
+        case "ligero": return "Actividad ligera";
+        case "moderado": return "Actividad moderada";
+        case "alta": return "Actividad alta";
+        default: return "";
+      }
+    }
+
+    function mapTrainingDays(act) {
+      switch (act) {
+        case "sedentario": return "0–1 días/semana";
+        case "ligero": return "2–3 días/semana";
+        case "moderado": return "3–5 días/semana";
+        case "alta": return "5–6 días/semana";
+        default: return "";
+      }
+    }
+
+    function calculateBaseCalories({ sexo, edad, peso, altura, actividad, objetivo }) {
       const base =
         sexo === "hombre"
           ? 10 * peso + 6.25 * altura - 5 * edad + 5
@@ -844,10 +880,6 @@
 
       let total = base * factorActividad;
 
-      // Ajuste por tipo de día
-      if (entrenamiento === "cardio_duro" || entrenamiento === "mixto") total += 200;
-      else if (entrenamiento === "descanso") total -= 150;
-
       // Ajuste por objetivo
       if (objetivo === "deficit") total -= 300;
       else if (objetivo === "superavit") total += 250;
@@ -855,14 +887,28 @@
       return Math.max(1300, Math.round(total));
     }
 
+    function adjustCaloriesForTraining(baseCals, entrenamiento) {
+      let delta = 0;
+      if (entrenamiento === "cardio_duro" || entrenamiento === "mixto") delta = 200;
+      else if (entrenamiento === "cardio_suave") delta = 70;
+      else if (entrenamiento === "descanso") delta = -150;
+      return Math.max(1200, Math.round(baseCals + delta));
+    }
+
+    function calculateDailyCalories(formData, basePlan) {
+      if (basePlan) {
+        return adjustCaloriesForTraining(basePlan.calorias, formData.entrenamiento);
+      }
+      const base = calculateBaseCalories(formData);
+      return adjustCaloriesForTraining(base, formData.entrenamiento);
+    }
+
     function calculateMacros(calorias, peso, objetivo) {
-      // Proteína aproximada
       let gProte = objetivo === "superavit" ? peso * 2 : peso * 2.2;
       gProte = Math.round(gProte);
 
       const kcalProte = gProte * 4;
 
-      // Grasas ~25% kcal
       const kcalGrasa = calorias * 0.25;
       const gGrasa = Math.round(kcalGrasa / 9);
 
@@ -873,49 +919,105 @@
     }
 
     function buildDiet({ calorias, macros, comidas, preferencias }) {
-      const baseMeals = ["Desayuno", "Comida", "Merienda", "Cena", "Snack extra"];
-      const selectedMeals = baseMeals.slice(0, comidas);
+      const baseMeals3 = ["Desayuno", "Comida", "Cena"];
+      const baseMeals4 = ["Desayuno", "Comida", "Merienda", "Cena"];
+      const baseMeals5 = ["Desayuno", "Comida", "Merienda", "Cena", "Snack extra"];
 
-      const textPref = preferencias ? "Ten en cuenta: " + preferencias : null;
+      let mealNames;
+      if (comidas === 3) mealNames = baseMeals3;
+      else if (comidas === 4) mealNames = baseMeals4;
+      else mealNames = baseMeals5;
 
-      const meals = selectedMeals.map((name, idx) => {
+      const patterns = {
+        3: [0.3, 0.4, 0.3],
+        4: [0.25, 0.35, 0.15, 0.25],
+        5: [0.2, 0.3, 0.15, 0.25, 0.1]
+      };
+
+      const shares = patterns[comidas] || patterns[4];
+      let remainingKcal = calorias;
+
+      const meals = mealNames.map((name, idx) => {
+        const share = shares[idx] ?? (1 / mealNames.length);
+        let kcal;
+        if (idx === mealNames.length - 1) {
+          kcal = remainingKcal;
+        } else {
+          kcal = Math.round(calorias * share);
+          remainingKcal -= kcal;
+        }
+
+        const factor = kcal / calorias;
+        const mealMacros = {
+          gProte: Math.round(macros.gProte * factor),
+          gCarb: Math.round(macros.gCarb * factor),
+          gGrasa: Math.round(macros.gGrasa * factor)
+        };
+
         let items;
         switch (name) {
           case "Desayuno":
             items = [
-              "Avena con leche o bebida vegetal",
+              "Avena o pan integral como base de hidratos",
               "1 pieza de fruta",
-              "Fuente de proteína: yogur proteico o claras/huevo"
+              "Yogur proteico, huevo o claras como fuente de proteína"
             ];
             break;
           case "Comida":
             items = [
-              "Plato principal con proteína magra (pollo, pavo, legumbre, tofu)",
+              "Proteína magra (pollo, pavo, pescado, tofu, legumbre)",
               "Ración de hidrato (arroz, pasta, patata, pan)",
               "Verdura abundante (ensalada o verdura cocinada)"
             ];
             break;
           case "Merienda":
-            items = ["Fruta", "Frutos secos o crema de cacahuete", "Opción proteica: queso fresco batido, lonchas de pavo, etc."];
+            items = [
+              "Fruta o yogur",
+              "Poco puñado de frutos secos o crema de cacahuete",
+              "Opción proteica ligera (queso fresco batido, lonchas de pavo, etc.)"
+            ];
             break;
           case "Cena":
             items = [
               "Proteína (pescado, huevo, carne magra o legumbre)",
               "Verduras variadas",
-              "Cantidad moderada de hidratos según sensación de hambre"
+              "Cantidad de hidratos ajustada al hambre y a la carga de entreno"
             ];
             break;
           default:
-            items = ["Snack libre pero coherente (fruta, yogur, puñado de frutos secos, barrita decente…)"];
+            items = [
+              "Snack coherente: fruta, yogur, barrita decente, puñado de frutos secos, etc."
+            ];
         }
 
-        return { name, items };
+        return { name, kcal, macros: mealMacros, items };
       });
+
+      const textPref = preferencias ? "Ten en cuenta: " + preferencias : null;
 
       return { calorias, macros, meals, textPref };
     }
 
-    function renderDiet(dateKey, name, diet) {
+    function renderBasePlan(plan) {
+      const box = document.getElementById("basePlanBox");
+      if (!plan) {
+        box.innerHTML = "Aún no has guardado ningún plan general.";
+        return;
+      }
+
+      const { calorias, macros, comidas, objetivoLabel, actividadLabel, entrenosSemana } = plan;
+
+      let html = "";
+      html += `<p><strong>Calorías objetivo diario:</strong> ${calorias} kcal</p>`;
+      html += `<p><strong>Macros aproximados:</strong> ${macros.gProte} g proteína · ${macros.gCarb} g hidratos · ${macros.gGrasa} g grasas</p>`;
+      html += `<p><strong>Número de comidas:</strong> ${comidas}</p>`;
+      html += `<p><strong>Objetivo:</strong> ${objetivoLabel}</p>`;
+      html += `<p><strong>Nivel de actividad:</strong> ${actividadLabel} (${entrenosSemana})</p>`;
+
+      box.innerHTML = html;
+    }
+
+    function renderDiet(dateKey, name, diet, notas) {
       const resultMeta = document.getElementById("resultMeta");
       const resultBox = document.getElementById("resultBox");
 
@@ -923,15 +1025,20 @@
       const { calorias, macros, meals, textPref } = diet;
 
       let html = "";
-      html += `<p><strong>Calorías estimadas:</strong> ${calorias} kcal</p>`;
+      html += `<p><strong>Calorías estimadas para hoy:</strong> ${calorias} kcal</p>`;
       html += `<p><strong>Macros aprox.:</strong> ${macros.gProte} g proteína · ${macros.gCarb} g hidratos · ${macros.gGrasa} g grasas</p>`;
 
       if (textPref) {
         html += `<p style="margin-top:6px; font-size:13px;"><strong>Preferencias:</strong> ${textPref}</p>`;
       }
+      if (notas) {
+        html += `<p style="margin-top:4px; font-size:13px;"><strong>Notas de hoy:</strong> ${notas}</p>`;
+      }
 
       meals.forEach((meal) => {
-        html += `<h4>${meal.name}</h4><ul>`;
+        html += `<h4>${meal.name} · ${meal.kcal} kcal aprox.</h4>`;
+        html += `<div class="meal-macros">${meal.macros.gProte} g proteína · ${meal.macros.gCarb} g hidratos · ${meal.macros.gGrasa} g grasas</div>`;
+        html += `<ul>`;
         meal.items.forEach((item) => {
           html += `<li>${item}</li>`;
         });
@@ -964,45 +1071,103 @@
         btn.addEventListener("click", () => {
           const date = btn.getAttribute("data-date");
           const entry = list.find((e) => e.date === date);
-          if (entry) renderDiet(entry.date, entry.name, entry.diet);
+          if (entry) renderDiet(entry.date, entry.name, entry.diet, entry.notes);
         });
       });
     }
 
-    document.getElementById("dietForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-
+    function getFormData() {
       const name = document.getElementById("name").value.trim();
       const sexo = document.getElementById("sexo").value;
       const edad = Number(document.getElementById("edad").value);
       const peso = Number(document.getElementById("peso").value);
       const altura = Number(document.getElementById("altura").value);
+      const comidas = Number(document.getElementById("comidas").value);
       const objetivo = document.getElementById("objetivo").value;
       const actividad = document.getElementById("actividad").value;
       const entrenamiento = document.getElementById("entrenamiento").value;
-      const comidas = Number(document.getElementById("comidas").value);
       const preferencias = document.getElementById("preferencias").value.trim();
+      const notas = document.getElementById("notas").value.trim();
 
       if (!edad || !peso || !altura) {
         alert("Completa al menos edad, peso y altura para calcular la dieta.");
-        return;
+        return null;
       }
 
-      const calorias = calculateCalories({ sexo, edad, peso, altura, actividad, objetivo, entrenamiento });
-      const macros = calculateMacros(calorias, peso, objetivo);
-      const diet = buildDiet({ calorias, macros, comidas, preferencias });
+      return {
+        name,
+        sexo,
+        edad,
+        peso,
+        altura,
+        comidas,
+        objetivo,
+        actividad,
+        entrenamiento,
+        preferencias,
+        notas
+      };
+    }
+
+    function saveBasePlanFromForm() {
+      const data = getFormData();
+      if (!data) return;
+
+      const calorias = calculateBaseCalories(data);
+      const macros = calculateMacros(calorias, data.peso, data.objetivo);
+
+      const objetivoLabel =
+        data.objetivo === "deficit"
+          ? "Perder grasa"
+          : data.objetivo === "superavit"
+          ? "Ganar músculo"
+          : "Mantener";
+
+      const actividadLabel = mapActivityLabel(data.actividad);
+      const entrenosSemana = mapTrainingDays(data.actividad);
+
+      const plan = {
+        calorias,
+        macros,
+        comidas: data.comidas,
+        objetivo: data.objetivo,
+        objetivoLabel,
+        actividad: data.actividad,
+        actividadLabel,
+        entrenosSemana
+      };
+
+      saveBasePlan(plan);
+      renderBasePlan(plan);
+      alert("Plan general guardado correctamente.");
+    }
+
+    document.getElementById("dietForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = getFormData();
+      if (!data) return;
+
+      const basePlan = loadBasePlan();
+      const calorias = calculateDailyCalories(data, basePlan);
+      const macros = calculateMacros(calorias, data.peso, data.objetivo);
+      const diet = buildDiet({
+        calorias,
+        macros,
+        comidas: data.comidas,
+        preferencias: data.preferencias
+      });
 
       const dateKey = getTodayKey();
       const list = loadStoredDiets();
       const existingIndex = list.findIndex((d) => d.date === dateKey);
 
-      const entry = { date: dateKey, name, diet };
+      const entry = { date: dateKey, name: data.name, diet, notes: data.notas };
 
       if (existingIndex >= 0) list[existingIndex] = entry;
       else list.push(entry);
 
       saveStoredDiets(list);
-      renderDiet(dateKey, name, diet);
+      renderDiet(dateKey, data.name, diet, data.notas);
       renderHistory(list);
     });
 
@@ -1014,13 +1179,13 @@
         alert("Aún no hay ninguna dieta guardada para hoy. Genera la dieta primero.");
         return;
       }
-      renderDiet(entry.date, entry.name, entry.diet);
+      renderDiet(entry.date, entry.name, entry.diet, entry.notes);
       renderHistory(list);
     }
 
-    // Pintar historial al cargar
     document.addEventListener("DOMContentLoaded", () => {
       renderHistory(loadStoredDiets());
+      renderBasePlan(loadBasePlan());
     });
   </script>
 </body>
